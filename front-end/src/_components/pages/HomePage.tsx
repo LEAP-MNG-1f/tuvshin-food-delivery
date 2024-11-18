@@ -3,7 +3,7 @@ import Hero from "../constant/Hero";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="flex flex-col">
       <Header />
       <Hero />
     </div>
