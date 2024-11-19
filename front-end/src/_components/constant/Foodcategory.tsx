@@ -6,10 +6,10 @@ type CardText = {
 
 const Foodcategory = (props: CardText) => {
   return (
-    <div className="flex justify-center ">
-      <div className="card w-[282px] shadow-lg ">
+    <div className="flex justify-center items-center">
+      <div className="card shadow-lg ">
         <img
-          className="w-[282px] object-cover object-center h-[180px] rounded-lg"
+          className="w-[350px] object-cover object-center h-[180px] rounded-lg"
           src={props.image}
         />
         <div className="card-body flex flex-col justify-start ">

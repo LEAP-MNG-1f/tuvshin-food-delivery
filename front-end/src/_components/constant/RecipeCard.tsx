@@ -1,14 +1,13 @@
 "use client";
-import { ImgProps } from "next/dist/shared/lib/get-img-props";
 import * as React from "react";
 import BookIcon from "../svg/BookIcon";
 
-const RecipeReviewCard = () => {
+const RecipeCard = () => {
   return (
-    <div className=" flex flex-row gap-20 card bg-base-100  mt-[100px]">
-      <div className="card-body shadow-md  hover:shadow-2xl">
-        <div>
-          <div className=" py-4">
+    <div className=" flex flex-row gap-20 card bg-base-100  mt-[100px] ">
+      <div className="card-body shadow-md rounded-xl hover:shadow-2xl">
+        <div >
+          <div className=" py-4 ">
             <BookIcon />
           </div>
           <div>
@@ -17,7 +16,7 @@ const RecipeReviewCard = () => {
           </div>
         </div>
       </div>
-      <div className="card-body shadow-md  hover:shadow-2xl">
+      <div className="card-body shadow-md rounded-xl hover:shadow-2xl">
         <div>
           <div className=" py-4">
             <svg
@@ -39,7 +38,7 @@ const RecipeReviewCard = () => {
           </div>
         </div>
       </div>
-      <div className="card-body shadow-md  hover:shadow-2xl">
+      <div className="card-body shadow-md rounded-xl hover:shadow-2xl">
         <div>
           <div className=" py-4">
             <svg
@@ -61,7 +60,7 @@ const RecipeReviewCard = () => {
           </div>
         </div>
       </div>
-      <div className="card-body shadow-md  hover:shadow-2xl">
+      <div className="card-body shadow-md rounded-xl hover:shadow-2xl">
         <div>
           <div className=" py-4">
             <BookIcon />
@@ -75,4 +74,4 @@ const RecipeReviewCard = () => {
     </div>
   );
 };
-export default RecipeReviewCard;
+export default RecipeCard ;

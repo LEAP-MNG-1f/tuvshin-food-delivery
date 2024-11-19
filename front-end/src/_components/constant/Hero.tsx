@@ -1,4 +1,4 @@
-import RecipeReviewCard from "./card";
+import RecipeCard from "./RecipeCard";
 import StarIcon from "../svg/StarIcon";
 import Foodcategory from "./Foodcategory";
 import Footer from "./Footer";
@@ -27,7 +27,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="flex justify-center items-center ">
-        <RecipeReviewCard />
+        <RecipeCard />
       </div>
       <div className="mt-[180px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
@@ -36,11 +36,11 @@ const Hero = () => {
         </div>
         <div>
           <button className="hover:shadow-2xl">
-            <h3 className="text-green-400">Бүгдийг харах</h3>
+            <h3 className="text-green-400 ">Бүгдийг харах</h3>
           </button>
         </div>
       </div>
-      <div className="flex justify-center gap-32 mt-[100px]">
+      <div className="flex justify-center gap-10 mt-[30px]">
         <Foodcategory
           image="https://www.figma.com/file/VqYifDAzddKNk05lRmWEPe/image/669a97cef4ad7e823b2a1cb020f7b7e74bce1ed7"
           description="Өглөөний хоол"
@@ -62,7 +62,7 @@ const Hero = () => {
           amount="24,800"
         />
       </div>
-      <div className="mt-[180px] flex justify-around gap-[500px] items-center  ">
+      <div className="mt-[120px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
           <StarIcon />
           <h3 className="text-2xl font-bold">Үндсэн хоол</h3>
@@ -73,7 +73,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      {/* <div className="flex justify-center gap-32 mt-[100px]">
+      <div className="flex justify-center gap-10 mt-[30px]">
         <Foodcategory
           image="https://s3-alpha-sig.figma.com/img/1f91/a1b6/d973c90c192043aefe86e4258acae7e6?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTok2YnRoKy5C-EmxJjP0UJkF9IKTTWuYbe102ty3DZ0NWYL6S2r1YoLudOdUhkRYde6p7c3N~mXWJTRopUoBAmeNodVByWiQSEl7JmCdH~lt6Lyji9Qx9kAkspPqTFFeBzWSK6tX~EhQTCgRI3fycQ72-wrSJTCmiHbBsMh41N8SI-ix9XSvau9mJdVFpmJZMEWEiubvFF4h-AXlM62PV6wDYZsFDpxo~~FfXAgD~T8~taFLP5HggAfgqx0b3IqOIt7Ta8DPdg2iSQqTiKrWO5HMPf6WIyzvlSBNxnHSnZlf-oTZayJM5u7FmcJnRZ-VFyNji~og-4nT9f-qXQoRA__"
           description="Main Pizza"
@@ -94,8 +94,8 @@ const Hero = () => {
           description="Зутан шөл"
           amount="17,800"
         />
-      </div> */}
-      <div className="mt-[180px] flex justify-around gap-[500px] items-center  ">
+      </div>
+      <div className="mt-[120px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
           <StarIcon />
           <h3 className="text-2xl font-bold">Салад ба зууш</h3>
@@ -106,7 +106,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      {/* <div className="flex justify-center gap-32 mt-[100px]">
+      <div className="flex justify-center gap-10  mt-[30px]">
         <Foodcategory
           image="https://s3-alpha-sig.figma.com/img/3527/9f71/293873e46dff98a580a78ab4b4726c6b?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SomTqDD7G4i1qqm53DwmfOoSXszcXJJj28MobYYzMfuzhZLs1DcCixXxBdA7PP6f66mBMUIaU9~RLy6veJVCQZp~B71MchLap99ua2GkKbG1vTG-oDwjVFuxtry1zIWw0FDaHwoNaTkbcPj~Cx6VY-vaZPF8QxnMy-22ivE5ZFcn-yyQh9dO98s2G-kXIxqN3DYxnGPSGjkTfGpCJPrh9qb0cmfO~YENCGwQGix1WC1TvhDYpTGdE9ygZMLSkSALoK~Dzsq-KlwDI7xPCCcCR~wfTALHfCTVh3aE4rDxu~rglV34fbXEc9kT1sD3hHXJuxNCxmVQ9IXbdDUumCYYVA"
           description="Чихэрлэг тахиа"
@@ -127,7 +127,7 @@ const Hero = () => {
           description="Apple Pie"
           amount="34,800"
         />
-      </div> */}
+      </div>
       <Footer />
     </div>
   );

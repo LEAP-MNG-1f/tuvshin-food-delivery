@@ -4,6 +4,7 @@ import PineconeIcon from "../svg/PineconeIcon";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Link from "next/link";
+import AnchorTemporaryDrawer from "./Order";
 
 const Header = () => {
   return (
@@ -14,7 +15,9 @@ const Header = () => {
             <PineconeIcon />
           </div>
           <div>
+            <Link href="/">
             <h3 className="p-4 text-sm font-bold text-[#000] btn">НҮҮР</h3>
+            </Link>
           </div>
           <div>
             <Link href="menupage">
@@ -32,8 +35,8 @@ const Header = () => {
             <div>
               <LocalGroceryStoreIcon />
             </div>
-            <div>
-              <h3 className="p-4 text-sm font-bold text-[#000]">Сагс</h3>
+            <div className="flex items-center">
+              <AnchorTemporaryDrawer/>
             </div>
           </div>
           <div className="flex items-center p-4">
