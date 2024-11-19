@@ -73,7 +73,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-center gap-32 mt-[100px]">
+      {/* <div className="flex justify-center gap-32 mt-[100px]">
         <Foodcategory
           image="https://s3-alpha-sig.figma.com/img/1f91/a1b6/d973c90c192043aefe86e4258acae7e6?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=NTok2YnRoKy5C-EmxJjP0UJkF9IKTTWuYbe102ty3DZ0NWYL6S2r1YoLudOdUhkRYde6p7c3N~mXWJTRopUoBAmeNodVByWiQSEl7JmCdH~lt6Lyji9Qx9kAkspPqTFFeBzWSK6tX~EhQTCgRI3fycQ72-wrSJTCmiHbBsMh41N8SI-ix9XSvau9mJdVFpmJZMEWEiubvFF4h-AXlM62PV6wDYZsFDpxo~~FfXAgD~T8~taFLP5HggAfgqx0b3IqOIt7Ta8DPdg2iSQqTiKrWO5HMPf6WIyzvlSBNxnHSnZlf-oTZayJM5u7FmcJnRZ-VFyNji~og-4nT9f-qXQoRA__"
           description="Main Pizza"
@@ -94,7 +94,7 @@ const Hero = () => {
           description="Зутан шөл"
           amount="17,800"
         />
-      </div>
+      </div> */}
       <div className="mt-[180px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
           <StarIcon />
@@ -106,7 +106,7 @@ const Hero = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-center gap-32 mt-[100px]">
+      {/* <div className="flex justify-center gap-32 mt-[100px]">
         <Foodcategory
           image="https://s3-alpha-sig.figma.com/img/3527/9f71/293873e46dff98a580a78ab4b4726c6b?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SomTqDD7G4i1qqm53DwmfOoSXszcXJJj28MobYYzMfuzhZLs1DcCixXxBdA7PP6f66mBMUIaU9~RLy6veJVCQZp~B71MchLap99ua2GkKbG1vTG-oDwjVFuxtry1zIWw0FDaHwoNaTkbcPj~Cx6VY-vaZPF8QxnMy-22ivE5ZFcn-yyQh9dO98s2G-kXIxqN3DYxnGPSGjkTfGpCJPrh9qb0cmfO~YENCGwQGix1WC1TvhDYpTGdE9ygZMLSkSALoK~Dzsq-KlwDI7xPCCcCR~wfTALHfCTVh3aE4rDxu~rglV34fbXEc9kT1sD3hHXJuxNCxmVQ9IXbdDUumCYYVA"
           description="Чихэрлэг тахиа"
@@ -123,12 +123,11 @@ const Hero = () => {
           amount="14,800"
         />
         <Foodcategory
-          _
           image="https://s3-alpha-sig.figma.com/img/8de6/08f4/fc3d415a9e59a1a8de7a0d9189e0fa8d?Expires=1733097600&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=fr9Rbuu1rwwIGYXR26jZ9kZPNKUGTyLpWPSKer53vpT3I0y2WkUUG3qeDkuK9e4n2HjjU3RPcuCLgsg4K13I59dTY~3NGQG-wgf56IW7BVDrzrKZ5-e-xkr6UM5L6Ij33l-nRn-xNeCDRxmc-2Rh1mFQNqyuimo1X1Lt3aFT~dSo9S3HFesTlaWqdAZfy5XSTwPxlkB-ewCeu6cV5modd1LwUed3U-yMmGm7laz6MHCRj2mtIcJxzAvtAqyQch1Ie0hVljALbvL5yexOu1ZeOP3E0h20U0PACVwHlquufRh42zHPbWcpuW9payNRUMD0MvykwxV9rs2mJ0rASn5MYw__"
           description="Apple Pie"
           amount="34,800"
         />
-      </div>
+      </div> */}
       <Footer />
     </div>
   );

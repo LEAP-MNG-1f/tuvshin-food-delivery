@@ -3,6 +3,7 @@
 import PineconeIcon from "../svg/PineconeIcon";
 import LocalGroceryStoreIcon from "@mui/icons-material/LocalGroceryStore";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -16,7 +17,9 @@ const Header = () => {
             <h3 className="p-4 text-sm font-bold text-[#000] btn">НҮҮР</h3>
           </div>
           <div>
+            <Link href="menupage">
             <h3 className="p-4 text-sm font-bold text-[#000]">ХООЛНЫ ЦЭС</h3>
+            </Link>
           </div>
           <div>
             <h3 className="p-4 text-sm font-bold text-[#000]">
