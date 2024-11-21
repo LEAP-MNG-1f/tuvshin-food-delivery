@@ -10,10 +10,11 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Foodcategory from './Foodcategory';
 
+
 export default function ResponsiveDialog() {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+  const fullScreen = useMediaQuery(theme.breakpoints.down('xl'));
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -38,23 +39,27 @@ export default function ResponsiveDialog() {
         onClose={handleClose}
         aria-labelledby="responsive-dialog-title"
       >
-        <DialogTitle id="responsive-dialog-title">
-          {"Use Google's location service?"}
+        <DialogTitle id="responsive-dialog-title" >
+        <div className='flex gap-10'>
+          <div>
+            <img className='w-[500px] h-[300px] rounded-lg' src="https://www.figma.com/file/VqYifDAzddKNk05lRmWEPe/image/669a97cef4ad7e823b2a1cb020f7b7e74bce1ed7" alt="" />
+          </div>
+          <div> 
+            <div className='flex flex-col gap-9'>
+              <div><p  className="font-semibold text-lg">Өглөөний хоол</p>
+            <p className="text-green-500">14,800</p>
+            </div>
+            <div>
+            <p className="font-semibold text-lg">Орц</p>
+            <p className="w-[200px] font-normal text-base line-clamp-3 text-[#767676] rounded-lg bg-gray-200">Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр  </p>
+            </div> 
+             <div> </div>
+            </div>
+          
+
+          </div>
+        </div>
         </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Let Google help apps determine location. This means sending anonymous
-            location data to Google, even when no apps are running.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Disagree
-          </Button>
-          <Button onClick={handleClose} autoFocus>
-            Agree
-          </Button>
-        </DialogActions>
       </Dialog>
     </React.Fragment>
   );

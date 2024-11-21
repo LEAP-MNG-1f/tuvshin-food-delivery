@@ -16,7 +16,7 @@ const Header = () => {
           </div>
           <div>
             <Link href="/">
-            <h3 className="p-4 text-sm font-bold text-[#000] btn">НҮҮР</h3>
+            <h3 className="p-4 text-sm font-bold text-[#000] ">НҮҮР</h3>
             </Link>
           </div>
           <div>
@@ -25,9 +25,11 @@ const Header = () => {
             </Link>
           </div>
           <div>
+            <Link href="/location">
             <h3 className="p-4 text-sm font-bold text-[#000]">
               ХҮРГЭЛТИЙН БҮС
             </h3>
+            </Link>
           </div>
         </div>
         <div className="flex items-center">
