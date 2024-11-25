@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import connectionDB from "./connectDB.js";
-import bodyParser from "body-parser";
+
 
 const server = express();
 server.use(cors());
@@ -149,7 +149,7 @@ server.post("/food-create",async(req,res)=>{
 server.get("/food-information", async(req,res)=>{
   const data= await connectionDB()
   let getdata=data.collection("food-data")
-  let result = await getdata.find().limit(10).toArray()
+  let result = await getdata.find().toArray()
   res.json({
     succss:true,
     data:result

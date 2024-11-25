@@ -27,11 +27,7 @@ export default function ResponsiveDialog() {
   return (
     <React.Fragment>
       <Button  onClick={handleClickOpen}>
-      <Foodcategory
-          image="https://www.figma.com/file/VqYifDAzddKNk05lRmWEPe/image/669a97cef4ad7e823b2a1cb020f7b7e74bce1ed7"
-          description="Өглөөний хоол"
-          amount="14,800"
-        />
+      <Foodcategory/>
       </Button>
       <Dialog
         fullScreen={fullScreen}
