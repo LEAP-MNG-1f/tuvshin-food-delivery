@@ -6,7 +6,7 @@ const RecipeCard = () => {
   return (
     <div className=" flex flex-row gap-20 card bg-base-100  mt-[100px] ">
       <div className="card-body shadow-md  rounded-xl hover:shadow-2xl">
-        <div >
+        <div>
           <div className=" py-4 ">
             <BookIcon />
           </div>
@@ -74,4 +74,4 @@ const RecipeCard = () => {
     </div>
   );
 };
-export default RecipeCard ;
+export default RecipeCard;

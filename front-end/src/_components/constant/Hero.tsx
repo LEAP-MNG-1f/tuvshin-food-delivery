@@ -16,7 +16,7 @@ const Hero = () => {
 
           <div>
             <h3 className="text-xl font-bold text-white w-[384px]">
-             Hymd , hurdan shuurhai , gert oir
+              Hymd , hurdan shuurhai , gert oir
             </h3>
           </div>
         </div>
@@ -41,7 +41,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="flex justify-center gap-10 mt-[30px]">
-        <Foodcategory/>
+        <Foodcategory />
       </div>
       <div className="mt-[120px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
@@ -55,7 +55,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="flex justify-center gap-10 mt-[30px]">
-<p>data</p>
+        <p>data</p>
       </div>
       <div className="mt-[120px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
@@ -69,7 +69,7 @@ const Hero = () => {
         </div>
       </div>
       <div className="flex justify-center gap-10  mt-[30px]">
-<p>data</p>
+        <p>data</p>
       </div>
       <Footer />
     </div>

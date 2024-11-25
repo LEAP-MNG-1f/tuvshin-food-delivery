@@ -1,13 +1,14 @@
+import AllFoodPage from "../constant/AllFoodPage";
+import Footer from "../constant/Footer";
+import Header from "../constant/Header";
 
-import AllFoodPage from "../constant/AllFoodPage"
-import Footer from "../constant/Footer"
-import Header from "../constant/Header"
-
-const MenuPage=()=>{
-    return <div>
-        <Header/>
-        <AllFoodPage/>
-       <Footer/>
+const MenuPage = () => {
+  return (
+    <div>
+      <Header />
+      <AllFoodPage />
+      <Footer />
     </div>
-}
-export default MenuPage
+  );
+};
+export default MenuPage;
