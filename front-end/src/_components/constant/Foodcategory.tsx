@@ -11,7 +11,7 @@ const Foodcategory = () => {
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/food-information");
+      const response = await fetch("http://localhost:8000/api/fooddata");
       const responsedata = await response.json();
       const realData = responsedata.data;
       console.log(realData);

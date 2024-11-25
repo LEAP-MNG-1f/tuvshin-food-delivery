@@ -2,6 +2,7 @@ import RecipeCard from "./RecipeCard";
 import StarIcon from "../svg/StarIcon";
 import Foodcategory from "./Foodcategory";
 import Footer from "./Footer";
+import ResponsiveDialog from "./Dialog";
 
 const Hero = () => {
   return (
@@ -41,7 +42,8 @@ const Hero = () => {
         </div>
       </div>
       <div className="flex justify-center gap-10 mt-[30px]">
-        <Foodcategory />
+        <ResponsiveDialog />
+        {/* <Foodcategory /> */}
       </div>
       <div className="mt-[120px] flex justify-around gap-[500px] items-center  ">
         <div className="flex items-center gap-3 ">
