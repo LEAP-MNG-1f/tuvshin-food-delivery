@@ -14,7 +14,6 @@ export default function ResponsiveDialog({
   image,
   price,
   name,
-  category,
   ingredient,
 }: FoodItem) {
   const [open, setOpen] = React.useState(false);
@@ -38,7 +37,7 @@ export default function ResponsiveDialog({
               className="w-[350px] object-cover h-[180px] rounded-lg"
               src={image}
             />
-            <h3 className="text-black text-lg font-semibold">{category}</h3>
+            <h3 className="text-black text-lg font-semibold">{name}</h3>
             <p className="text-green-500 text-lg font-semibold">{price} </p>
           </div>
         </div>
@@ -57,7 +56,7 @@ export default function ResponsiveDialog({
             <div>
               <div className="flex flex-col gap-9">
                 <div>
-                  <p className="font-semibold text-lg">{category}</p>
+                  <p className="font-semibold text-lg">{name}</p>
                   <p className="text-green-500">{price}</p>
                 </div>
                 <div>
@@ -66,7 +65,11 @@ export default function ResponsiveDialog({
                     {ingredient}
                   </p>
                 </div>
-                <div> </div>
+                <div>
+                  <button className="bg-[#18BA51] text-white w-[204px] rounded-xl h-[54px]">
+                    Сагслах
+                  </button>
+                </div>
               </div>
             </div>
           </div>
