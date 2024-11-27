@@ -1,19 +1,26 @@
 "use client";
 import { useEffect, useState } from "react";
-interface FoodItem {
+import ResponsiveDialog from "./Dialog";
+export type FoodItem = {
   name: string;
   image: string;
   category: string;
   price: number;
-}
+  ingredient: string;
+};
+export type ArrayProps = {
+  food: FoodItem[];
+};
 
 const AllFoodPage = () => {
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
+  console.log(foodData);
+
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/fooddata");
       const responsedata = await response.json();
-      const realData = responsedata.data;
+      const realData = responsedata?.data;
       console.log(realData);
       setFoodData(realData);
     } catch (error) {
@@ -24,20 +31,17 @@ const AllFoodPage = () => {
     fetchData();
   }, []);
   return (
-    <div className="flex justify-center items-center h-[1500px]">
-      <div className="grid grid-cols-4 grid-rows-4">
-        {foodData.map((item, index) => (
-          <div key={index} className="card shadow-lg m-4 mt-10">
-            <img
-              className="w-[350px] object-cover object-center h-[180px] rounded-lg"
-              src={item.image}
-            />
-            <div className="card-body flex flex-col justify-start">
-              <p className="font-semibold text-lg">{item.name}</p>
-              <h3 className="text-green-500">{item.category}</h3>
-              <p>{item.price} </p>
-            </div>
-          </div>
+    <div className="flex justify-center items-center  ">
+      <div className="grid grid-cols-4 grid-rows-4 gap-6 ">
+        {foodData.map((food, index) => (
+          <ResponsiveDialog
+            key={index}
+            image={food.image}
+            name={food.name}
+            price={food.price}
+            category={food.category}
+            ingredient={food.ingredient}
+          />
         ))}
       </div>
     </div>

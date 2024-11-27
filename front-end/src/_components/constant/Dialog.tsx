@@ -8,9 +8,15 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import Foodcategory from "./Foodcategory";
+import { FoodItem } from "./AllFoodPage";
 
-export default function ResponsiveDialog() {
+export default function ResponsiveDialog({
+  image,
+  price,
+  name,
+  category,
+  ingredient,
+}: FoodItem) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
@@ -26,7 +32,16 @@ export default function ResponsiveDialog() {
   return (
     <React.Fragment>
       <Button onClick={handleClickOpen}>
-        <Foodcategory />
+        <div className="">
+          <div className=" flex flex-col gap-2 justify-start items-start shadow-lg ">
+            <img
+              className="w-[350px] object-cover h-[180px] rounded-lg"
+              src={image}
+            />
+            <h3 className="text-black text-lg font-semibold">{category}</h3>
+            <p className="text-green-500 text-lg font-semibold">{price} </p>
+          </div>
+        </div>
       </Button>
       <Dialog
         fullScreen={fullScreen}
@@ -37,22 +52,18 @@ export default function ResponsiveDialog() {
         <DialogTitle id="responsive-dialog-title">
           <div className="flex gap-10">
             <div>
-              <img
-                className="w-[500px] h-[300px] rounded-lg"
-                src="https://www.figma.com/file/VqYifDAzddKNk05lRmWEPe/image/669a97cef4ad7e823b2a1cb020f7b7e74bce1ed7"
-                alt=""
-              />
+              <img className="w-[500px] h-[300px] rounded-lg" src={image} />
             </div>
             <div>
               <div className="flex flex-col gap-9">
                 <div>
-                  <p className="font-semibold text-lg">Өглөөний хоол</p>
-                  <p className="text-green-500">14,800</p>
+                  <p className="font-semibold text-lg">{category}</p>
+                  <p className="text-green-500">{price}</p>
                 </div>
                 <div>
                   <p className="font-semibold text-lg">Орц</p>
                   <p className="w-[200px] font-normal text-base line-clamp-3 text-[#767676] rounded-lg bg-gray-200">
-                    Хулуу, төмс, лууван , сонгино, цөцгийн тос, самрын үр{" "}
+                    {ingredient}
                   </p>
                 </div>
                 <div> </div>
