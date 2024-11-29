@@ -1,8 +1,10 @@
-import Orderlocation from "@/_components/pages/OrderLocation"
+import Orderlocation from "@/app/_components/pages/OrderLocation";
 
-const locationpage=()=>{
-    return <div>
-        <Orderlocation/>
+const locationpage = () => {
+  return (
+    <div>
+      <Orderlocation />
     </div>
-}
-export default locationpage
+  );
+};
+export default locationpage;

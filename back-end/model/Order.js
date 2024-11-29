@@ -1,21 +1,25 @@
 import mongoose, { model } from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+const OrderSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
   },
-  email: {
+  ingredient: {
     type: String,
     required: true,
   },
-  password: {
-    type: String,
-    required: true,
-  },
-  phoneNumber: {
+  price: {
     type: Number,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
 });
-export const User = model("User", UserSchema);
+export const Order = model("Order", OrderSchema);

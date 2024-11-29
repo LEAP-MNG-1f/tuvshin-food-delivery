@@ -2,20 +2,24 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
-import { FoodItem } from "./AllFoodPage";
+
+// Define a custom type for the props of ResponsiveDialog
+export type DialogProps = {
+  image: string;
+  price: number;
+  name: string;
+  ingeredient: string;
+};
 
 export default function ResponsiveDialog({
   image,
   price,
   name,
-  ingredient,
-}: FoodItem) {
+  ingeredient,
+}: DialogProps) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down("xl"));
@@ -30,6 +34,7 @@ export default function ResponsiveDialog({
 
   return (
     <React.Fragment>
+      {/* Button to open the dialog */}
       <Button onClick={handleClickOpen}>
         <div className="">
           <div className=" flex flex-col gap-2 justify-start items-start shadow-lg ">
@@ -42,6 +47,8 @@ export default function ResponsiveDialog({
           </div>
         </div>
       </Button>
+
+      {/* Dialog component */}
       <Dialog
         fullScreen={fullScreen}
         open={open}
@@ -62,7 +69,7 @@ export default function ResponsiveDialog({
                 <div>
                   <p className="font-semibold text-lg">Орц</p>
                   <p className="w-[200px] font-normal text-base line-clamp-3 text-[#767676] rounded-lg bg-gray-200">
-                    {ingredient}
+                    {ingeredient}
                   </p>
                 </div>
                 <div>

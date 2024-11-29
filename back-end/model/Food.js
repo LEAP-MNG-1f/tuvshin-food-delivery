@@ -1,25 +1,26 @@
 import mongoose, { model } from "mongoose";
 
-const FoodSchema = new mongoose.Schema({
+const foodSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true,
-  },
-  ingredient: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
     required: true,
   },
   image: {
     type: String,
     required: true,
   },
-  category: {
+  ingeredient: {
     type: String,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  categoryId: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "Categories",
     required: true,
   },
 });
-export const Food = model("food-data", FoodSchema);
+
+export const foodModel = model("Food", foodSchema);
