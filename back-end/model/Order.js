@@ -1,25 +1,52 @@
 import mongoose, { model } from "mongoose";
 
+const processEnum = {
+  values: ["active", "waiting", "progress", "delivered"],
+};
+
 const OrderSchema = new mongoose.Schema({
-  name: {
-    type: String,
+  customer: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "User",
     required: true,
   },
-  ingredient: {
-    type: String,
-    required: true,
-  },
-  price: {
+  orderNumber: {
     type: Number,
     required: true,
   },
-  image: {
+  foodIds: [
+    {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "Food",
+      required: true,
+    },
+  ],
+  totalPrice: {
     type: String,
     required: true,
   },
-  category: {
+  process: {
+    type: String,
+    enum: processEnum,
+    default: "active",
+    required: true,
+  },
+  createDate: {
+    type: Date,
+    required: true,
+  },
+  district: {
+    type: String,
+    required: true,
+  },
+  Khoroo: {
+    type: String,
+    required: true,
+  },
+  Apartment: {
     type: String,
     required: true,
   },
 });
+
 export const Order = model("Order", OrderSchema);

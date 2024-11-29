@@ -6,7 +6,7 @@ export type FoodItem = {
   image: string;
   category: string;
   price: number;
-  ingredient: string;
+  ingeredient: string;
 };
 export type ArrayProps = {
   food: FoodItem[];
@@ -17,7 +17,7 @@ const Foodcategory = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/fooddata");
+      const response = await fetch("http://localhost:8000/api/foods");
       const responsedata = await response.json();
       const realData = responsedata?.data;
       console.log(realData);
@@ -38,8 +38,7 @@ const Foodcategory = () => {
             image={food.image}
             name={food.name}
             price={food.price}
-            category={food.category}
-            ingredient={food.ingredient}
+            ingeredient={food.ingeredient}
           />
         ))}
       </div>

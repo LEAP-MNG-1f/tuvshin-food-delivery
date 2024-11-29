@@ -5,7 +5,7 @@ import {
 } from "../Controller/foodController.js";
 
 const foodRouter = express.Router();
-foodRouter.get("/fooddata", getAllFoodData);
+foodRouter.get("/foods", getAllFoodData);
 foodRouter.post("/fooddata", createFoodData);
 
 export default foodRouter;
