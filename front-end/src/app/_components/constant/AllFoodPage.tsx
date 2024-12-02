@@ -1,8 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FoodItem } from "./Foodcategory";
 
+export type FoodItem = {
+  _id: string;
+  name: string;
+  price: number;
+  image: string;
+  categoryId: {
+    _id: string;
+    name: string;
+    __v: number;
+  };
+  ingeredient: string;
+  __v: number;
+};
 const AllFood = () => {
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
   const [filteredFoodData, setFilteredFoodData] = useState<FoodItem[]>([]);
@@ -49,32 +61,72 @@ const AllFood = () => {
       foodData.map((food) => [food.categoryId._id, food.categoryId])
     ).values()
   );
+  const showAllFood = () => {
+    setFilteredFoodData(foodData);
+  };
 
   return (
     <div className="container max-w-[1200px] m-auto mt-10">
-      <div className="flex flex-wrap gap-4 justify-center mb-8">
-        <button
-          key="all-categories"
-          onClick={() => handleCategoryClick("")}
-          className={`px-4 py-2 rounded-lg ${
-            selectedCategory === "" ? "bg-green-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          бүх хоол
-        </button>
-        {uniqueCategories.map((category) => (
+      <div className="flex flex-wrap gap-6 justify-center mb-8">
+        <div>
           <button
-            key={`category-${category._id}`}
-            onClick={() => handleCategoryClick(category._id)}
-            className={`px-4 py-2 rounded-lg ${
-              selectedCategory === category._id
+            key="all-categories"
+            onClick={() => handleCategoryClick("Хямдралтай")}
+            className={`px-4 py-2 rounded-md w-[280px] ${
+              selectedCategory === ""
                 ? "bg-green-500 text-white"
                 : "bg-gray-200"
             }`}
           >
-            {category.name}
+            Хямдралтай
           </button>
-        ))}
+        </div>
+        <div>
+          <button
+            onClick={() => handleCategoryClick("Салад ба зууш")}
+            className={`px-4 py-2 rounded-md w-[280px] ${
+              selectedCategory === ""
+                ? "bg-green-500 text-white"
+                : "bg-gray-200"
+            }`}
+          >
+            Салад ба зууш
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => handleCategoryClick("  Амттан")}
+            className={`px-4 py-2 rounded-md w-[280px] ${
+              selectedCategory === ""
+                ? "bg-green-500 text-white"
+                : "bg-gray-200"
+            }`}
+          >
+            Амттан
+          </button>
+        </div>
+        <div>
+          <button
+            onClick={() => handleCategoryClick("  Үндсэн хоол")}
+            className={`px-4 py-2 rounded-md w-[280px] ${
+              selectedCategory === ""
+                ? "bg-green-500 text-white"
+                : "bg-gray-200"
+            }`}
+          >
+            Үндсэн хоол
+          </button>
+        </div>
+      </div>
+      <div>
+        <button
+          onClick={showAllFood}
+          className={`px-4 py-2 rounded-md w-[280px] mb-5 ${
+            selectedCategory === "" ? "bg-green-500 text-white" : "bg-gray-200"
+          }`}
+        >
+          Бүгдийг харах
+        </button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">

@@ -2,9 +2,9 @@
 import { useTheme } from "@emotion/react";
 import { Button, Dialog, DialogTitle, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
-import { FoodItem } from "./Foodcategory";
 import { groupBy } from "lodash";
 import StarIcon from "../svg/StarIcon";
+import { FoodItem } from "./AllFoodPage";
 
 export type DialogProps = {
   image: string;

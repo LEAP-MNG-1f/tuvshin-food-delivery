@@ -1,7 +1,7 @@
-import { Category } from "../model/Category.js";
+import { categoryModel } from "../model/Category.js";
 
 const createcategory = async (request, response) => {
-  const result = await Category.insertMany([
+  const result = await categoryModel.insertMany([
     {
       name: "Хямдралтай",
     },
@@ -22,7 +22,7 @@ const createcategory = async (request, response) => {
 };
 
 const getAllCategory = async (request, response) => {
-  const result = await Category.find();
+  const result = await categoryModel.find();
   response.json({
     succes: true,
     data: result,
