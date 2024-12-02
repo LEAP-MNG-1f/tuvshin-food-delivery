@@ -34,7 +34,6 @@ export default function ResponsiveDialog({
 
   return (
     <React.Fragment>
-      {/* Button to open the dialog */}
       <Button onClick={handleClickOpen}>
         <div className="">
           <div className=" flex flex-col gap-2 justify-start items-start shadow-lg ">
@@ -48,7 +47,6 @@ export default function ResponsiveDialog({
         </div>
       </Button>
 
-      {/* Dialog component */}
       <Dialog
         fullScreen={fullScreen}
         open={open}

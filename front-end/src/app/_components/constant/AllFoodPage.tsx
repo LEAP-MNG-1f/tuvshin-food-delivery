@@ -1,26 +1,23 @@
 "use client";
+
 import { useEffect, useState } from "react";
-import ResponsiveDialog from "./Dialog";
+import { FoodItem } from "./Foodcategory";
 
-export type FoodItem = {
-  id: string;
-  name: string;
-  image: string;
-  categoryId: string;
-  price: number;
-  ingeredient: string;
-};
-
-const AllFoodPage = () => {
+const AllFood = () => {
   const [foodData, setFoodData] = useState<FoodItem[]>([]);
+  const [filteredFoodData, setFilteredFoodData] = useState<FoodItem[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedRecipe, setSelectedRecipe] = useState<FoodItem | null>(null);
 
   const fetchData = async () => {
     try {
       const response = await fetch("http://localhost:8000/api/foods");
       const responsedata = await response.json();
-      setFoodData(responsedata?.data);
+      const realData = responsedata?.data;
+      setFoodData(realData || []);
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching data:", error);
+      setFoodData([]);
     }
   };
 
@@ -28,21 +25,79 @@ const AllFoodPage = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    setFilteredFoodData(foodData);
+  }, [foodData]);
+
+  const handleCategoryClick = (categoryId: string) => {
+    setSelectedCategory(categoryId);
+    if (categoryId === "") {
+      setFilteredFoodData(foodData);
+    } else {
+      setFilteredFoodData(
+        foodData.filter((food) => food.categoryId._id === categoryId)
+      );
+    }
+  };
+
+  const handleCardClick = (food: FoodItem) => {
+    setSelectedRecipe(food);
+  };
+
+  const uniqueCategories = Array.from(
+    new Map(
+      foodData.map((food) => [food.categoryId._id, food.categoryId])
+    ).values()
+  );
+
   return (
-    <div className="container m-auto ">
-      <div className="grid grid-cols-4 justify-center gap-10 mt-[30px]">
-        {foodData.map((food, index) => (
-          <ResponsiveDialog
-            key={index}
-            image={food.image}
-            price={food.price}
-            name={food.name}
-            ingeredient={food.ingeredient}
-          />
+    <div className="container max-w-[1200px] m-auto mt-10">
+      <div className="flex flex-wrap gap-4 justify-center mb-8">
+        <button
+          key="all-categories"
+          onClick={() => handleCategoryClick("")}
+          className={`px-4 py-2 rounded-lg ${
+            selectedCategory === "" ? "bg-green-500 text-white" : "bg-gray-200"
+          }`}
+        >
+          бүх хоол
+        </button>
+        {uniqueCategories.map((category) => (
+          <button
+            key={`category-${category._id}`}
+            onClick={() => handleCategoryClick(category._id)}
+            className={`px-4 py-2 rounded-lg ${
+              selectedCategory === category._id
+                ? "bg-green-500 text-white"
+                : "bg-gray-200"
+            }`}
+          >
+            {category.name}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
+        {filteredFoodData.map((food, index) => (
+          <div
+            key={`food-${food._id}-${index}`}
+            onClick={() => handleCardClick(food)}
+            className="border p-4 rounded-lg shadow-md hover:shadow-lg transition"
+          >
+            <img
+              src={food.image}
+              alt={food.name}
+              className="w-full h-40 object-cover rounded-md"
+            />
+            <h3 className="text-xl font-bold mt-2">{food.name}</h3>
+            <p className="text-green-500 font-semibold">
+              {food.price.toLocaleString()}₮
+            </p>
+          </div>
         ))}
       </div>
     </div>
   );
 };
 
-export default AllFoodPage;
+export default AllFood;

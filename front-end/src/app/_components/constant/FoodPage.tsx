@@ -1,109 +1,137 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import { useTheme } from "@emotion/react";
+import { Button, Dialog, DialogTitle, useMediaQuery } from "@mui/material";
+import { useEffect, useState } from "react";
+import { FoodItem } from "./Foodcategory";
+import { groupBy } from "lodash";
 import StarIcon from "../svg/StarIcon";
 
-const FoodPage = () => {
-  const [discountData, setDiscountData] = useState<any[]>([]);
-  const [mainDishData, setMainDishData] = useState<any[]>([]);
-  const [saladData, setSaladData] = useState<any[]>([]);
+export type DialogProps = {
+  image: string;
+  price: number;
+  name: string;
+  ingredient: string;
+};
 
-  useEffect(() => {
-    fetch("http://localhost:8000/api/fooddata")
-      .then((res) => res.json())
-      .then((data) => setDiscountData(data))
-      .catch((error) => console.error("Error fetching discounts:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/fooddata")
-      .then((res) => res.json())
-      .then((data) => setMainDishData(data))
-      .catch((error) => console.error("Error fetching main dishes:", error));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:8000/api/fooddata")
-      .then((res) => res.json())
-      .then((data) => setSaladData(data))
-      .catch((error) => console.error("Error fetching salads:", error));
-  }, []);
+const ResponsiveDialog = ({ image, price, name, ingredient }: DialogProps) => {
+  const [open, setOpen] = useState(false);
+  const theme = useTheme();
 
   return (
-    <div className="mt-[180px]">
-      <div className="flex justify-around gap-[500px] items-center">
-        <div className="flex items-center gap-3">
-          <StarIcon />
-          <h3 className="text-2xl font-bold">Хямдралтай</h3>
+    <>
+      <Button onClick={() => setOpen(true)}>
+        <div className="flex flex-col gap-2 justify-start items-start shadow-lg">
+          <img
+            className="w-[350px] object-cover h-[180px] rounded-lg"
+            src={image}
+            alt={name}
+          />
+          <h3 className="text-black text-lg font-semibold">{name}</h3>
+          <p className="text-green-500 text-lg font-semibold">{price} ₮</p>
         </div>
-        <div>
-          <button className="hover:shadow-2xl">
-            <h3 className="text-green-400">Бүгдийг харах</h3>
-          </button>
-        </div>
-      </div>
-      <div className="flex justify-center gap-10 mt-[30px]">
-        {discountData.length > 0 ? (
-          discountData.map((item) => (
-            <div key={item.id} className="food-item">
-              <img src={item.image} />
-              <h4>{item.name}</h4>
-              <p>{item.price}</p>
-            </div>
-          ))
-        ) : (
-          <p>Түр хүлээнэ үү...</p>
-        )}
-      </div>
+      </Button>
 
-      <div className="mt-[120px] flex justify-around gap-[500px] items-center">
-        <div className="flex items-center gap-3">
-          <StarIcon />
-          <h3 className="text-2xl font-bold">Үндсэн хоол</h3>
-        </div>
-        <div>
-          <button className="hover:shadow-2xl">
-            <h3 className="text-green-400">Бүгдийг харах</h3>
-          </button>
-        </div>
-      </div>
-      <div className="flex justify-center gap-10 mt-[30px]">
-        {mainDishData.length > 0 ? (
-          mainDishData.map((item) => (
-            <div key={item.id} className="food-item">
-              <img src={item.image} />
-              <h4>{item.name}</h4>
-              <p>{item.price}</p>
+      <Dialog
+        open={open}
+        onClose={() => setOpen(false)}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          <div className="flex flex-col md:flex-row gap-10">
+            <div>
+              <img
+                className="w-full md:w-[500px] h-[300px] rounded-lg"
+                src={image}
+                alt={name}
+              />
             </div>
-          ))
-        ) : (
-          <p>Түр хүлээнэ үү...</p>
-        )}
-      </div>
+            <div className="flex flex-col gap-9">
+              <div>
+                <p className="font-semibold text-lg">{name}</p>
+                <p className="text-green-500">{price} ₮</p>
+              </div>
+              <div>
+                <p className="font-semibold text-lg">Орц</p>
+                <p className="w-full md:w-[200px] font-normal text-base line-clamp-3 text-[#767676] rounded-lg bg-gray-200 p-2">
+                  {ingredient}
+                </p>
+              </div>
+              <button
+                className="bg-[#18BA51] text-white w-full md:w-[204px] rounded-xl h-[54px]"
+                onClick={() => setOpen(false)}
+              >
+                Сагслах
+              </button>
+            </div>
+          </div>
+        </DialogTitle>
+      </Dialog>
+    </>
+  );
+};
 
-      <div className="mt-[120px] flex justify-around gap-[500px] items-center">
-        <div className="flex items-center gap-3">
-          <StarIcon />
-          <h3 className="text-2xl font-bold">Салад ба зууш</h3>
+export const FoodPage = () => {
+  const [foodDatas, setFoodDatas] = useState<FoodItem[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch("http://localhost:8000/api/foods");
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const responsedata = await response.json();
+      const realData: FoodItem[] = responsedata?.data || [];
+      setFoodDatas(realData);
+    } catch (error) {
+      console.error("Error fetching food data:", error);
+      setError(
+        error instanceof Error ? error.message : "An unknown error occurred"
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  const groupedData = groupBy(
+    foodDatas,
+    (foodData) => foodData.categoryId.name
+  );
+
+  return (
+    <div className="container mx-auto mt-24">
+      {Object.entries(groupedData).map(([categoryTitle, categoryRecipes]) => (
+        <div key={categoryTitle} className="mb-12">
+          <h2 className="font-bold text-xl mb-8 flex items-center gap-2">
+            <StarIcon />
+            {categoryTitle}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {(categoryRecipes as FoodItem[]).map((recipe) => (
+              <div
+                key={recipe._id}
+                className="cursor-pointer transition-transform hover:scale-105"
+              >
+                <ResponsiveDialog
+                  image={recipe.image || "https://via.placeholder.com/150"}
+                  name={recipe.name || "Нэр байхгүй"}
+                  price={recipe.price || 0}
+                  ingredient={recipe.ingeredient || "Орц байхгүй"}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-        <div>
-          <button className="hover:shadow-2xl">
-            <h3 className="text-green-400">Бүгдийг харах</h3>
-          </button>
-        </div>
-      </div>
-      <div className="flex justify-center gap-10 mt-[30px]">
-        {saladData.length > 0 ? (
-          saladData.map((item) => (
-            <div key={item.id} className="food-item">
-              <img src={item.image} />
-              <h4>{item.name}</h4>
-              <p>{item.price}</p>
-            </div>
-          ))
-        ) : (
-          <p>Түр хүлээнэ үү...</p>
-        )}
-      </div>
+      ))}
     </div>
   );
 };
