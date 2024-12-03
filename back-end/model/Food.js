@@ -18,7 +18,7 @@ const foodSchema = new mongoose.Schema({
   },
   categoryId: {
     type: mongoose.SchemaTypes.ObjectId,
-    ref: "Categories",
+    ref: "categories",
     required: true,
   },
 });

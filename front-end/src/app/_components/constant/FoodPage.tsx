@@ -104,34 +104,36 @@ export const FoodPage = () => {
 
   const groupedData = groupBy(
     foodDatas,
-    (foodData) => foodData.categoryId.name
+    (foodData) => foodData?.categoryId?.name
   );
 
   return (
     <div className="container mx-auto mt-24">
-      {Object.entries(groupedData).map(([categoryTitle, categoryRecipes]) => (
-        <div key={categoryTitle} className="mb-12">
-          <h2 className="font-bold text-xl mb-8 flex items-center gap-2">
-            <StarIcon />
-            {categoryTitle}
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {(categoryRecipes as FoodItem[]).map((recipe) => (
-              <div
-                key={recipe._id}
-                className="cursor-pointer transition-transform hover:scale-105"
-              >
-                <ResponsiveDialog
-                  image={recipe.image || "https://via.placeholder.com/150"}
-                  name={recipe.name || "Нэр байхгүй"}
-                  price={recipe.price || 0}
-                  ingredient={recipe.ingeredient || "Орц байхгүй"}
-                />
-              </div>
-            ))}
+      {Object.entries(groupedData).map(([categoryTitle, categoryRecipes]) => {
+        return (
+          <div key={categoryTitle} className="mb-12">
+            <h2 className="font-bold text-xl mb-8 flex items-center gap-2">
+              <StarIcon />
+              {categoryTitle}
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {(categoryRecipes as FoodItem[]).map((recipe) => (
+                <div
+                  key={recipe._id}
+                  className="cursor-pointer transition-transform hover:scale-105"
+                >
+                  <ResponsiveDialog
+                    image={recipe.image || "https://via.placeholder.com/150"}
+                    name={recipe.name || "Нэр байхгүй"}
+                    price={recipe.price || 0}
+                    ingredient={recipe.ingeredient || "Орц байхгүй"}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

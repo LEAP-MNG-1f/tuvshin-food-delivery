@@ -26,18 +26,22 @@ const MyMap = () => {
             <div className="w-full border border-green-400"></div>
             <ul className="list-disc list-inside space-y-1 pt-[10px] flex gap-[20px] items-cente ">
               <div>
-                <li>Баянмонгол хороолол</li>
-                <li>26-р байр</li>
-                <li>45-р байр</li>
-                <li>3-р байр</li>
-                <li>Хан-Уул хотхон</li>
+                <h2>Нархан хотхон</h2>
+                <h2>26-р байр</h2>
+                <h2>26-р байр</h2>
+                <h2>45-р байр</h2>
+                <h2>3-р байр</h2>
+                <h2>Хоймор хотхон </h2>
+                <h2>Хоймор хотхон </h2>
               </div>
               <div>
-                <li>Баянмонгол хороолол</li>
-                <li>26-р байр</li>
-                <li>45-р байр</li>
-                <li>3-р байр</li>
-                <li>Хан-Уул хотхон</li>
+                <h2>Нархан хотхон</h2>
+                <h2>26-р байр</h2>
+                <h2>26-р байр</h2>
+                <h2>45-р байр</h2>
+                <h2>3-р байр</h2>
+                <h2>Хоймор хотхон </h2>
+                <h2>Хоймор хотхон </h2>
               </div>
             </ul>
           </div>
@@ -46,11 +50,13 @@ const MyMap = () => {
             <h4 className="text-lg font-semibold t mb-2">B бүс</h4>
             <div className="w-full border border-green-400"></div>
             <ul className="list-disc list-inside space-y-1 pt-[10px]">
-              <li>Зайсан</li>
-              <li>Номун вилла</li>
-              <li>Ривер Гарден</li>
-              <li>Шинэ төгөл</li>
-              <li>Time Square хотхон</li>
+              <h2>Нархан хотхон</h2>
+              <h2>26-р байр</h2>
+              <h2>26-р байр</h2>
+              <h2>45-р байр</h2>
+              <h2>3-р байр</h2>
+              <h2>Хоймор хотхон </h2>
+              <h2>Хоймор хотхон </h2>
             </ul>
           </div>
         </div>

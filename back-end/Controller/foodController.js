@@ -137,7 +137,7 @@ const createFoodData = async (request, response) => {
   });
 };
 const getAllFoodData = async (request, response) => {
-  const result = await foodModel.find();
+  const result = await foodModel.find().populate("categoryId");
   response.json({
     succes: true,
     data: result,

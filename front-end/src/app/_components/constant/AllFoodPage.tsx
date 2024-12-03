@@ -67,68 +67,35 @@ const AllFood = () => {
 
   return (
     <div className="container max-w-[1200px] m-auto mt-10">
-      <div className="flex flex-wrap gap-6 justify-center mb-8">
+      <div className="flex flex-wrap justify-center mb-8">
         <div>
           <button
-            key="all-categories"
-            onClick={() => handleCategoryClick("Хямдралтай")}
-            className={`px-4 py-2 rounded-md w-[280px] ${
+            onClick={showAllFood}
+            className={`px-4 py-2 rounded-md w-[180px]  ${
               selectedCategory === ""
                 ? "bg-green-500 text-white"
                 : "bg-gray-200"
             }`}
           >
-            Хямдралтай
+            Бүгдийг харах
           </button>
         </div>
         <div>
-          <button
-            onClick={() => handleCategoryClick("Салад ба зууш")}
-            className={`px-4 py-2 rounded-md w-[280px] ${
-              selectedCategory === ""
-                ? "bg-green-500 text-white"
-                : "bg-gray-200"
-            }`}
-          >
-            Салад ба зууш
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => handleCategoryClick("  Амттан")}
-            className={`px-4 py-2 rounded-md w-[280px] ${
-              selectedCategory === ""
-                ? "bg-green-500 text-white"
-                : "bg-gray-200"
-            }`}
-          >
-            Амттан
-          </button>
-        </div>
-        <div>
-          <button
-            onClick={() => handleCategoryClick("  Үндсэн хоол")}
-            className={`px-4 py-2 rounded-md w-[280px] ${
-              selectedCategory === ""
-                ? "bg-green-500 text-white"
-                : "bg-gray-200"
-            }`}
-          >
-            Үндсэн хоол
-          </button>
+          {uniqueCategories.map((category) => (
+            <button
+              key={`category-${category._id}`}
+              onClick={() => handleCategoryClick(category._id)}
+              className={`w-[180px] ml-[75px] px-4 py-2 rounded-lg ${
+                selectedCategory === category._id
+                  ? "bg-green-500 text-white"
+                  : "bg-gray-200"
+              }`}
+            >
+              {category.name}
+            </button>
+          ))}
         </div>
       </div>
-      <div>
-        <button
-          onClick={showAllFood}
-          className={`px-4 py-2 rounded-md w-[280px] mb-5 ${
-            selectedCategory === "" ? "bg-green-500 text-white" : "bg-gray-200"
-          }`}
-        >
-          Бүгдийг харах
-        </button>
-      </div>
-
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-8">
         {filteredFoodData.map((food, index) => (
           <div
