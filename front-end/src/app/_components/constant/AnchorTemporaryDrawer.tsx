@@ -22,13 +22,11 @@ export default function AnchorTemporaryDrawer() {
     right: false,
   });
 
-  // Load cart items from localStorage on component mount
   React.useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
     setCartItems(savedCart);
   }, []);
 
-  // Update localStorage whenever cart items change
   React.useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   }, [cartItems]);
@@ -47,13 +45,11 @@ export default function AnchorTemporaryDrawer() {
       setState({ ...state, [anchor]: open });
     };
 
-  // Remove item from cart
   const removeFromCart = (itemId: string) => {
     const updatedCart = cartItems.filter((item) => item._id !== itemId);
     setCartItems(updatedCart);
   };
 
-  // Increase quantity of an item
   const increaseQuantity = (itemId: string) => {
     const updatedCart = cartItems.map((item) =>
       item._id === itemId
@@ -63,7 +59,6 @@ export default function AnchorTemporaryDrawer() {
     setCartItems(updatedCart);
   };
 
-  // Decrease quantity of an item
   const decreaseQuantity = (itemId: string) => {
     const updatedCart = cartItems
       .map((item) => {
@@ -77,7 +72,6 @@ export default function AnchorTemporaryDrawer() {
     setCartItems(updatedCart);
   };
 
-  // Calculate total price
   const totalPrice = cartItems.reduce(
     (total, item) => total + item.price * (item.quantity || 1),
     0

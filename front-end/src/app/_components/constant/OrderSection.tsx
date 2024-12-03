@@ -20,24 +20,28 @@ export const OrderSection = () => {
   });
   const [isLoading, setIsLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cartItems") || "[]");
     setCartItems(savedCart);
   }, []);
 
-  // Update localStorage whenever cart items change
-  React.useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  }, [cartItems]);
-
-  const updateQuantity = (item: CartItem, newQuantity: number) => {
-    const updatedCart = cartItems.map((cartItem) =>
-      cartItem._id === item._id
-        ? { ...cartItem, quantity: Math.max(newQuantity, 1) }
-        : cartItem
+  const updateQuantity = (itemId: string, newQuantity: number) => {
+    const updatedCart = cartItems.map((item) =>
+      item._id === itemId
+        ? { ...item, quantity: Math.max(newQuantity, 1) }
+        : item
     );
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+    const filteredCart = updatedCart.filter((item) => item.quantity > 0);
+
+    setCartItems(filteredCart);
+    localStorage.setItem("cartItems", JSON.stringify(filteredCart));
+  };
+
+  const removeItem = (itemId: string) => {
+    const updatedCart = cartItems.filter((item) => item._id !== itemId);
     setCartItems(updatedCart);
+    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
 
   const totalPrice = cartItems.reduce(
@@ -75,11 +79,13 @@ export const OrderSection = () => {
         detail: orderDetails.detail,
       };
       console.log("Order Payload:", JSON.stringify(orderPayload, null, 2));
+      ("");
 
       const response = await axios.post(
-        "http://localhost:8000/api/orders",
+        "http://localhost:8000/api/order",
         orderPayload
       );
+      console.log(response.data);
 
       if (response.data.success) {
         localStorage.removeItem("cart");
@@ -96,8 +102,8 @@ export const OrderSection = () => {
   };
 
   return (
-    <div className="p-60 flex items-center justify-center  gap-[300px]">
-      <div className="bg-white shadow-lg rounded-lg p-6 space-y-6 ">
+    <div className="p-60 flex items-center justify-center gap-[300px]">
+      <div className="bg-white shadow-lg rounded-lg p-6 space-y-6">
         <Link href="/">
           <button>
             <h3>back to home page</h3>
@@ -156,7 +162,10 @@ export const OrderSection = () => {
               type="text"
               value={orderDetails.apartment}
               onChange={(e) =>
-                setOrderDetails({ ...orderDetails, apartment: e.target.value })
+                setOrderDetails({
+                  ...orderDetails,
+                  apartment: e.target.value,
+                })
               }
               id="apartment"
               placeholder="Жишээ: Сөүлийн гудамж..."
@@ -237,6 +246,7 @@ export const OrderSection = () => {
           </div>
         </form>
       </div>
+
       <div className="flex flex-col">
         {cartItems.length === 0 ? (
           <p className="flex justify-center p-5">Сагс хоосон байна.</p>
@@ -254,32 +264,60 @@ export const OrderSection = () => {
                     className="w-[250px] h-[140px] object-cover rounded-md"
                   />
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-2 flex-grow">
                   <span className="font-bold">{item.name}</span>
                   <span className="text-[12px]">{item.ingeredient}</span>
-                  <span className="text-green-500">
-                    ₮{(item.price * item.quantity).toLocaleString()}
-                  </span>
+                  <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity - 1)
+                        }
+                        className="bg-gray-200 px-2 rounded"
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button
+                        onClick={() =>
+                          updateQuantity(item._id, item.quantity + 1)
+                        }
+                        className="bg-gray-200 px-2 rounded"
+                      >
+                        +
+                      </button>
+                    </div>
+                    <span className="text-green-500">
+                      ₮{(item.price * item.quantity).toLocaleString()}
+                    </span>
+                  </div>
                 </div>
+                <button
+                  onClick={() => removeItem(item._id)}
+                  className="absolute top-2 right-2 text-red-500"
+                >
+                  Устгах
+                </button>
               </div>
             ))}
           </div>
         )}
-        <div className="text-right">
-          <div className="flex justify-between">
+
+        <div className="text-right mt-4">
+          <div className="flex justify-between items-center">
             <div>
               <p className="text-gray-600">Нийт төлөх дүн:</p>
               <p className="text-green-600 text-2xl font-bold">
-                {totalPrice.toLocaleString()}
+                ₮{totalPrice.toLocaleString()}
               </p>
             </div>
             <button
               onClick={createOrder}
               disabled={isLoading || cartItems.length === 0}
-              className={`font-extrabold mr-17 rounded-lg w-[200px] p-2 ${
+              className={`font-extrabold rounded-lg w-[200px] p-2 ${
                 isLoading || cartItems.length === 0
-                  ? "bg-gray-400 cursor-not-allowed"
-                  : "bg-green-500"
+                  ? "bg-gray-400 cursor-not-allowed text-white"
+                  : "bg-green-500 text-white hover:bg-green-600"
               }`}
             >
               {isLoading ? "Захиалж байна..." : "Захиалах"}
@@ -290,4 +328,5 @@ export const OrderSection = () => {
     </div>
   );
 };
+
 export default OrderSection;

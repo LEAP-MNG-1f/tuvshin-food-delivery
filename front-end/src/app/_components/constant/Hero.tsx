@@ -10,7 +10,7 @@ const Hero = () => {
         <div className="text-center md:text-left flex flex-col gap-5 items-center md:items-start">
           <div>
             <h3 className="font-semibold text-[40px] sm:text-[55px] text-white max-w-[360px]">
-              Pinecone Food Delivery
+              Tuvshin's Food Delivery
             </h3>
           </div>
           <div>
