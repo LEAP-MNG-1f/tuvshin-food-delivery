@@ -1,133 +1,3 @@
-// "use client";
-// import * as React from "react";
-// import Box from "@mui/material/Box";
-// import Drawer from "@mui/material/Drawer";
-// import Button from "@mui/material/Button";
-// import List from "@mui/material/List";
-// import Divider from "@mui/material/Divider";
-// import ListItem from "@mui/material/ListItem";
-// import ListItemButton from "@mui/material/ListItemButton";
-// import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
-// import InboxIcon from "@mui/icons-material/MoveToInbox";
-// import MailIcon from "@mui/icons-material/Mail";
-// import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-// import { FoodItem } from "./AllFoodPage";
-
-// type Anchor = "right";
-
-// export default function AnchorTemporaryDrawer() {
-//   const [cartItems, setCartItems] = React.useState<FoodItem[]>([]);
-//   const [state, setState] = React.useState({
-//     top: false,
-//     left: false,
-//     bottom: false,
-//     right: false,
-//   });
-//   React.useEffect(() => {
-//     const savedCart = JSON.parse(localStorage.getItem("cart") || "[]");
-//     const cartWithQuantity = savedCart.map((item: FoodItem) => ({
-//       ...item,
-//     }));
-//     setCartItems(cartWithQuantity);
-//   }, []);
-//   console.log("dsfgh", cartItems);
-
-//   const toggleDrawer =
-//     (anchor: Anchor, open: boolean) =>
-//     (event: React.KeyboardEvent | React.MouseEvent) => {
-//       if (
-//         event.type === "keydown" &&
-//         ((event as React.KeyboardEvent).key === "Tab" ||
-//           (event as React.KeyboardEvent).key === "Shift")
-//       ) {
-//         return;
-//       }
-
-//       setState({ ...state, [anchor]: open });
-//     };
-
-//   const list = (anchor: Anchor) => (
-//     <Box
-//       sx={{ width: anchor === "right" || anchor === "bottom" ? "auto" : 250 }}
-//       role="presentation"
-//       onClick={toggleDrawer(anchor, false)}
-//       onKeyDown={toggleDrawer(anchor, false)}
-//     >
-//       <List>
-//         {["Таны сагс"].map((text, index) => (
-//           <ListItem key={text} disablePadding>
-//             <ListItemButton>
-//               <ListItemIcon>
-//                 {index % 2 === 0 ? <ArrowBackIosIcon /> : <MailIcon />}
-//               </ListItemIcon>
-//               <ListItemText primary={text} />
-//             </ListItemButton>
-//           </ListItem>
-//         ))}
-//       </List>
-//       <Divider />
-//       <List>
-//         {[].map((text, index) => (
-//           <ListItem key={text} disablePadding>
-//             <ListItemButton>
-//               <ListItemIcon>
-//                 {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-//               </ListItemIcon>
-//               <ListItemText primary={text} />
-//             </ListItemButton>
-//           </ListItem>
-//         ))}
-//       </List>
-//     </Box>
-//   );
-
-//   return (
-//     <div>
-//       {(["right"] as const).map((anchor) => (
-//         <React.Fragment key={anchor}>
-//           <button>
-//             <h2
-//               onClick={toggleDrawer(anchor, true)}
-//               className="p-4 text-sm font-bold text-[#000]"
-//             >
-//               {"Сагс"}
-//             </h2>
-//           </button>
-//           <Drawer
-//             anchor={anchor}
-//             open={state[anchor]}
-//             onClose={toggleDrawer(anchor, false)}
-//           >
-//             {list(anchor)}
-//             <div>
-//               {cartItems.map((item) => (
-//                 <div
-//                   key={item._id}
-//                   className="flex mb-4 w-[500px] gap-6 border-b border-t p-4 relative"
-//                 >
-//                   <div>
-//                     <img
-//                       src={item.image}
-//                       alt={item.name}
-//                       className="w-[250px] h-[140px] object-cover rounded-md"
-//                     />
-//                   </div>
-//                   <div className="flex flex-col gap-2">
-//                     <span className="font-bold">{item.name}</span>
-//                     <span className="text-[12px]">{item.ingeredient}</span>
-//                     <span className="text-green-500"></span>
-//                   </div>
-//                   <button className="absolute top-2 right-2 text-red-500"></button>
-//                 </div>
-//               ))}
-//             </div>
-//           </Drawer>
-//         </React.Fragment>
-//       ))}
-//     </div>
-//   );
-// }
 "use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
@@ -141,6 +11,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { FoodItem } from "./AllFoodPage";
+import Link from "next/link";
 
 type CartItem = FoodItem & { quantity: number };
 type Anchor = "right";
@@ -284,15 +155,17 @@ export default function AnchorTemporaryDrawer() {
             </span>
           </div>
           <div className="p-4">
-            <button
-              className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600"
-              onClick={() => {
-                // Here you can add checkout logic
-                alert("Төлбөр хийх хуудас руу шилжүүлэх");
-              }}
-            >
-              Захиалах
-            </button>
+            <Link href="/order">
+              <button
+                className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600"
+                onClick={() => {
+                  // Here you can add checkout logic
+                  alert("Төлбөр хийх хуудас руу шилжүүлэх");
+                }}
+              >
+                Захиалах
+              </button>
+            </Link>
           </div>
         </div>
       )}

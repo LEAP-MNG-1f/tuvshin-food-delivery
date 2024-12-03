@@ -17,6 +17,6 @@ server.use("/api", orderRouter);
 mongoose.connect(
   "mongodb+srv://tuwshuk13:99534102tuv@cluster0.h79bf.mongodb.net/food-db"
 );
-server.listen(PORT, (req, res) => {
+server.listen(PORT, () => {
   console.log(`server ajillaa http://localhost:${PORT}`);
 });

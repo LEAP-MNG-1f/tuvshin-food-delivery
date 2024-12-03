@@ -136,7 +136,7 @@ export const FoodPage = () => {
       const realData: FoodItem[] = responsedata?.data || [];
       setFoodDatas(realData);
     } catch (error) {
-      console.error("Error fetching food data:", error);
+      // console.error("Error fetching food data:", error);
       setError(
         error instanceof Error ? error.message : "An unknown error occurred"
       );

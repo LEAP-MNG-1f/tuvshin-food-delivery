@@ -3,6 +3,9 @@ import mongoose, { model } from "mongoose";
 const processEnum = {
   values: ["active", "waiting", "progress", "delivered"],
 };
+const paymentTypeEnum = {
+  values: ["Бэлнээр", "Картаар"],
+};
 
 const OrderSchema = new mongoose.Schema({
   customer: {
@@ -47,6 +50,16 @@ const OrderSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  phone: {
+    type: String,
+    required: true,
+  },
+  paymentType: {
+    type: String,
+    enum: paymentTypeEnum,
+    required: true,
+  },
+  detail: { type: String },
 });
 
 export const Order = model("Order", OrderSchema);
