@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { useTheme } from "@emotion/react";
 import { Button, Dialog, DialogTitle, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -7,15 +7,65 @@ import StarIcon from "../svg/StarIcon";
 import { FoodItem } from "./AllFoodPage";
 
 export type DialogProps = {
+  _id?: string;
   image: string;
   price: number;
   name: string;
   ingredient: string;
 };
 
-const ResponsiveDialog = ({ image, price, name, ingredient }: DialogProps) => {
+export const ResponsiveDialog = ({
+  _id,
+  image,
+  price,
+  name,
+  ingredient,
+}: DialogProps) => {
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+
+  // Function to add item to cart in localStorage
+  const addToCart = () => {
+    try {
+      // Get existing cart items from localStorage
+      const existingCartItems = JSON.parse(
+        localStorage.getItem("cartItems") || "[]"
+      );
+
+      // Check if item already exists in cart
+      const existingItemIndex = existingCartItems.findIndex(
+        (item: DialogProps) => item._id === _id
+      );
+
+      if (existingItemIndex > -1) {
+        // If item exists, increment its quantity
+        existingCartItems[existingItemIndex].quantity =
+          (existingCartItems[existingItemIndex].quantity || 1) + 1;
+      } else {
+        // If item doesn't exist, add it with quantity 1
+        existingCartItems.push({
+          _id,
+          image,
+          price,
+          name,
+          ingredient,
+          quantity: 1,
+        });
+      }
+
+      // Save updated cart back to localStorage
+      localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
+
+      // Close the dialog after adding to cart
+      setOpen(false);
+
+      // Optional: You might want to add a toast or alert to confirm item was added
+      alert(`${name} сагсанд нэмэгдлээ!`);
+    } catch (error) {
+      console.error("Error adding item to cart:", error);
+      alert("Сагсанд нэмэхэд алдаа гарлаа.");
+    }
+  };
 
   return (
     <>
@@ -58,7 +108,7 @@ const ResponsiveDialog = ({ image, price, name, ingredient }: DialogProps) => {
               </div>
               <button
                 className="bg-[#18BA51] text-white w-full md:w-[204px] rounded-xl h-[54px]"
-                onClick={() => setOpen(false)}
+                onClick={addToCart}
               >
                 Сагслах
               </button>
@@ -123,6 +173,7 @@ export const FoodPage = () => {
                   className="cursor-pointer transition-transform hover:scale-105"
                 >
                   <ResponsiveDialog
+                    _id={recipe._id}
                     image={recipe.image || "https://via.placeholder.com/150"}
                     name={recipe.name || "Нэр байхгүй"}
                     price={recipe.price || 0}

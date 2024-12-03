@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ResponsiveDialog } from "./FoodPage";
 
 export type FoodItem = {
   _id: string;
