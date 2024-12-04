@@ -42,9 +42,11 @@ const Header = () => {
           </div>
           <div className="flex items-center p-4">
             <PermIdentityIcon fontSize="medium" />
-            <div>
-              <h3 className="p-4 text-sm font-bold text-[#000]">Нэвтрэх</h3>
-            </div>
+            <Link href="/admindashboard">
+              <div>
+                <h3 className="p-4 text-sm font-bold text-[#000]">Нэвтрэх</h3>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
