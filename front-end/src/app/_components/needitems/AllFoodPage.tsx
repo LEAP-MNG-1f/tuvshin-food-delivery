@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { ResponsiveDialog } from "./FoodPage";
+import { BACKEND_POINT } from "@/app/constant";
 
 export type FoodItem = {
   _id: string;
@@ -24,7 +25,7 @@ const AllFood = () => {
 
   const fetchData = async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/foods");
+      const response = await fetch(`${BACKEND_POINT}/api/foods`);
       const responsedata = await response.json();
       const realData = responsedata?.data;
       setFoodData(realData || []);

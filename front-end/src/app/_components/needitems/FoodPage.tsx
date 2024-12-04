@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { groupBy } from "lodash";
 import StarIcon from "../svg/StarIcon";
 import { FoodItem } from "./AllFoodPage";
+import { BACKEND_POINT } from "@/app/constant";
 
 export type DialogProps = {
   _id?: string;
@@ -119,7 +120,7 @@ export const FoodPage = () => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch("http://localhost:8000/api/foods");
+      const response = await fetch(`${BACKEND_POINT}/api/foods`);
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }

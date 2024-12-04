@@ -1,6 +1,6 @@
-import AllFoodPage from "../constant/AllFoodPage";
-import Footer from "../constant/Footer";
-import Header from "../constant/Header";
+import AllFoodPage from "../needitems/AllFoodPage";
+import Footer from "../needitems/Footer";
+import Header from "../needitems/Header";
 
 const MenuPage = () => {
   return (

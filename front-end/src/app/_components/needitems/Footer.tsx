@@ -22,14 +22,6 @@ const Footer = () => {
 
           <p className="font-bold text-xl">Food Delivery</p>
         </aside>
-        <div className="flex items-center gap-20 justify-center text-base font-semibold text-white">
-          <p>Нүүр</p>
-          <p>Холбоо барих</p>
-          <p>Хоолны цэс</p>
-          <p>Үйлчилгээний нөхцөл</p>
-          <p>Хүргэлтийн бүс</p>
-          <p>Нууцлалын бодлого</p>
-        </div>
         <nav>
           <div className="grid grid-flow-col gap-4">
             <a>

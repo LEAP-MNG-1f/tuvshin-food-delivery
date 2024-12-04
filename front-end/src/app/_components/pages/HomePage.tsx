@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import { FoodItem } from "../constant/AllFoodPage";
-import Header from "../constant/Header";
-import Hero from "../constant/Hero";
+import { FoodItem } from "../needitems/AllFoodPage";
+import Header from "../needitems/Header";
+import Hero from "../needitems/Hero";
 
 const HomePage = () => {
   return (

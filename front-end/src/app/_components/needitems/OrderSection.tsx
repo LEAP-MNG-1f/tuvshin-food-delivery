@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FoodItem } from "./AllFoodPage";
 import Link from "next/link";
+import { BACKEND_POINT } from "@/app/constant";
 
 export interface CartItem extends FoodItem {
   quantity: number;
@@ -82,7 +83,7 @@ export const OrderSection = () => {
       ("");
 
       const response = await axios.post(
-        "http://localhost:8000/api/order",
+        `${BACKEND_POINT}/api/order`,
         orderPayload
       );
       console.log(response.data);
