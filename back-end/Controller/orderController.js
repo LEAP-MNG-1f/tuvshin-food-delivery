@@ -2,41 +2,14 @@ import { Order } from "../model/Order.js";
 
 const createOrder = async (request, response) => {
   try {
-    const {
-      customer,
-      orderNumber,
-      foodIds,
-      totalPrice,
-      process,
-      district,
-      Khoroo,
-      Apartment,
-      phone,
-      paymentType,
-      detail,
-    } = req.body;
+    const result = await Order.create(request.body);
 
-    const result = await orderModel.create({
-      customer,
-      orderNumber,
-      foodIds,
-      totalPrice,
-      process: process || "active",
-      createDate: new Date(),
-      district,
-      Khoroo,
-      Apartment,
-      phone,
-      paymentType: paymentType,
-      detail,
-    });
-
-    res.json({
+    response.json({
       success: true,
       data: result,
     });
   } catch (error) {
-    res.status(400).json({
+    response.json({
       success: false,
       message: error.message,
     });
@@ -44,17 +17,14 @@ const createOrder = async (request, response) => {
 };
 const getAllOrder = async (request, response) => {
   try {
-    const result = await orderModel
-      .find()
-      .populate("customer")
-      .populate("foodIds");
+    const result = await Order.find().populate("customer").populate("foodIds");
 
-    res.json({
+    response.json({
       success: true,
       data: result,
     });
   } catch (error) {
-    res.status(500).json({
+    response.status(500).json({
       success: false,
       message: error.message,
     });

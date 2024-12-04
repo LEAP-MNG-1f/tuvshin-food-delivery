@@ -5,9 +5,11 @@ import userRouter from "./router/userRouter.js";
 import foodRouter from "./router/foodRouter.js";
 import categoryRouter from "./router/categoryRouter.js";
 import orderRouter from "./router/orderRouter.js";
+import bodyParser from "body-parser";
 
 const server = express();
 server.use(cors());
+server.use(bodyParser.json());
 const PORT = 8000;
 server.use("/api", userRouter);
 server.use("/api", foodRouter);

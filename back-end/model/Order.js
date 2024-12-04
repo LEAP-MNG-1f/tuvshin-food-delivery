@@ -36,6 +36,7 @@ const OrderSchema = new mongoose.Schema({
   },
   createDate: {
     type: Date,
+    default: new Date(),
     required: true,
   },
   district: {
