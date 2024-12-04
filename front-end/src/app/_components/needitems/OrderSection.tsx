@@ -248,7 +248,7 @@ export const OrderSection = () => {
         </form>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col border-2 p-5 border-green-400 hover:shadow-lg ">
         {cartItems.length === 0 ? (
           <p className="flex justify-center p-5">Сагс хоосон байна.</p>
         ) : (
@@ -256,7 +256,7 @@ export const OrderSection = () => {
             {cartItems.map((item) => (
               <div
                 key={item._id}
-                className="flex mb-4 w-[500px] gap-6 border-b border-t p-4 relative"
+                className="flex mb-4  w-[500px] gap-6 border-2 p-4 relative"
               >
                 <div>
                   <img
@@ -295,7 +295,7 @@ export const OrderSection = () => {
                 </div>
                 <button
                   onClick={() => removeItem(item._id)}
-                  className="absolute top-2 right-2 text-red-500"
+                  className="absolute top-36 right-2 text-red-500"
                 >
                   Устгах
                 </button>
