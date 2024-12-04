@@ -1,4 +1,3 @@
-// "use client";
 import { useTheme } from "@emotion/react";
 import { Button, Dialog, DialogTitle, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -24,25 +23,20 @@ export const ResponsiveDialog = ({
   const [open, setOpen] = useState(false);
   const theme = useTheme();
 
-  // Function to add item to cart in localStorage
   const addToCart = () => {
     try {
-      // Get existing cart items from localStorage
       const existingCartItems = JSON.parse(
         localStorage.getItem("cartItems") || "[]"
       );
 
-      // Check if item already exists in cart
       const existingItemIndex = existingCartItems.findIndex(
         (item: DialogProps) => item._id === _id
       );
 
       if (existingItemIndex > -1) {
-        // If item exists, increment its quantity
         existingCartItems[existingItemIndex].quantity =
           (existingCartItems[existingItemIndex].quantity || 1) + 1;
       } else {
-        // If item doesn't exist, add it with quantity 1
         existingCartItems.push({
           _id,
           image,
@@ -53,13 +47,10 @@ export const ResponsiveDialog = ({
         });
       }
 
-      // Save updated cart back to localStorage
       localStorage.setItem("cartItems", JSON.stringify(existingCartItems));
 
-      // Close the dialog after adding to cart
       setOpen(false);
 
-      // Optional: You might want to add a toast or alert to confirm item was added
       alert(`${name} сагсанд нэмэгдлээ!`);
     } catch (error) {
       console.error("Error adding item to cart:", error);
@@ -136,7 +127,6 @@ export const FoodPage = () => {
       const realData: FoodItem[] = responsedata?.data || [];
       setFoodDatas(realData);
     } catch (error) {
-      // console.error("Error fetching food data:", error);
       setError(
         error instanceof Error ? error.message : "An unknown error occurred"
       );

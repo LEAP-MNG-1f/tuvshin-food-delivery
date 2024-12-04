@@ -10,7 +10,6 @@ const Header = () => {
   return (
     <div className="px-4 py-2 bg-white">
       <div className="flex justify-between items-center md:justify-around">
-        {/* Left section */}
         <div className="flex items-center gap-5">
           <div>
             <PineconeIcon />
@@ -34,7 +33,6 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Right section */}
         <div className="flex items-center gap-5">
           <div className="flex items-center p-4">
             <LocalGroceryStoreIcon />
@@ -50,9 +48,6 @@ const Header = () => {
           </div>
         </div>
       </div>
-
-      {/* Mobile menu toggle */}
-      <div className="md:hidden">{/* You can add a mobile menu here */}</div>
     </div>
   );
 };

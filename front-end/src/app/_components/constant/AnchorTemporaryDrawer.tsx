@@ -153,7 +153,6 @@ export default function AnchorTemporaryDrawer() {
               <button
                 className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600"
                 onClick={() => {
-                  // Here you can add checkout logic
                   alert("Төлбөр хийх хуудас руу шилжүүлэх");
                 }}
               >
